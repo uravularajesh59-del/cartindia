@@ -1,0 +1,10 @@
+cartindia_app/
+node_modules/
+.vscode/
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.apk
+*.log

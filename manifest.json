@@ -1,0 +1,36 @@
+{
+    "name": "CartIndia - Online Shopping",
+    "short_name": "CartIndia",
+    "description": "Shop online for mobiles, electronics, fashion, home, appliances and more at best prices",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#2874f0",
+    "theme_color": "#2874f0",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "shopping",
+        "business"
+    ],
+    "screenshots": [
+        {
+            "src": "images/banners/banner1.jpg",
+            "sizes": "1920x1080",
+            "type": "image/jpeg"
+        }
+    ]
+}

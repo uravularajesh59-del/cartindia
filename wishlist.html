@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - CartIndia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="CartIndia" style="width: 45px; height: 45px; border-radius: 50%;">
+                    <span>CartIndia</span>
+                </a>
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search for products, brands and more...">
+                    <button class="search-btn"><span>🔍</span></button>
+                </div>
+
+                <div class="header-actions">
+                    <button class="header-btn" onclick="openModal('loginModal')">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </button>
+
+                    <a href="wishlist.html" class="header-btn">
+                        <span>❤️</span>
+                        <span>Wishlist</span>
+                    </a>
+
+                    <a href="cart.html" class="header-btn cart-badge">
+                        <span>🛒</span>
+                        <span>Cart</span>
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 style="font-size: 1.75rem; font-weight: 700; margin: 1.5rem 0;">My Wishlist</h1>
+
+            <div id="wishlistContent" class="grid grid-4 gap-md" style="margin-top: 1.5rem;">
+                <!-- Wishlist items will be loaded here -->
+            </div>
+
+            <div id="emptyWishlist"
+                style="display: none; text-align: center; padding: 4rem 2rem; background-color: var(--white); border-radius: var(--radius-lg);">
+                <div style="font-size: 5rem; margin-bottom: 1rem;">❤️</div>
+                <h2 style="font-size: 1.5rem; color: var(--gray-700); margin-bottom: 0.5rem;">Your wishlist is empty
+                </h2>
+                <p style="color: var(--gray-500); margin-bottom: 1.5rem;">Save your favorite items here!</p>
+                <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CartIndia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top">↑</button>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        function loadWishlist() {
+            const wishlistItems = wishlist.getItems();
+            const container = document.getElementById('wishlistContent');
+            const emptyMessage = document.getElementById('emptyWishlist');
+
+            if (wishlistItems.length === 0) {
+                container.style.display = 'none';
+                emptyMessage.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'grid';
+            emptyMessage.style.display = 'none';
+
+            container.innerHTML = wishlistItems.map(item => {
+                const product = getProductById(item.id);
+                if (product) {
+                    return createProductCard(product);
+                }
+                return '';
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', loadWishlist);
+    </script>
+</body>
+
+</html>

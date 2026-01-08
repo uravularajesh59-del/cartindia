@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - CartIndia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .checkout-section {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="CartIndia" style="width: 45px; height: 45px; border-radius: 50%;">
+                    <span>CartIndia</span>
+                </a>
+                <h1 style="font-size: 1.25rem; font-weight: 600; color: var(--white);">Secure Checkout</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="checkout-container">
+                <div>
+                    <!-- Delivery Address -->
+                    <div class="checkout-section">
+                        <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Delivery Address</h2>
+                        <form id="addressForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Address *</label>
+                                <input type="text" class="form-input" placeholder="House No., Building Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Road Name, Area, Colony" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">City *</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">State *</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">PIN Code *</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address Type</label>
+                                    <select class="form-select">
+                                        <option>Home</option>
+                                        <option>Work</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Options -->
+                    <div class="checkout-section">
+                        <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Payment Options</h2>
+
+                        <label
+                            style="display: flex; align-items: center; padding: 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); margin-bottom: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="payment" value="cod" checked style="margin-right: 1rem;">
+                            <div>
+                                <div style="font-weight: 600;">Cash on Delivery</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600);">Pay when you receive</div>
+                            </div>
+                        </label>
+
+                        <label
+                            style="display: flex; align-items: center; padding: 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); margin-bottom: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="payment" value="upi" style="margin-right: 1rem;">
+                            <div>
+                                <div style="font-weight: 600;">UPI</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600);">Pay via UPI apps</div>
+                            </div>
+                        </label>
+
+                        <label
+                            style="display: flex; align-items: center; padding: 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); cursor: pointer;">
+                            <input type="radio" name="payment" value="card" style="margin-right: 1rem;">
+                            <div>
+                                <div style="font-weight: 600;">Credit / Debit Card</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-600);">Visa, Mastercard, Rupay</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div>
+                    <div class="price-summary">
+                        <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem;">Order Summary</h2>
+
+                        <div id="orderSummary">
+                            <!-- Will be loaded by JS -->
+                        </div>
+
+                        <button class="btn btn-orange" style="width: 100%; justify-content: center; margin-top: 1rem;"
+                            onclick="placeOrder()">
+                            Place Order
+                        </button>
+
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background-color: var(--gray-50); border-radius: var(--radius-md); text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+                            <div style="font-size: 0.875rem; color: var(--gray-600);">Safe and Secure Payments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CartIndia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-body" style="text-align: center; padding: 2rem;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Order Placed Successfully!</h2>
+                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Thank you for shopping with CartIndia</p>
+                <p style="font-size: 0.875rem; color: var(--gray-500); margin-bottom: 1.5rem;">Order ID:
+                    #ORD${Date.now()}</p>
+                <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        function loadOrderSummary() {
+            const cartItems = cart.getItems();
+
+            if (cartItems.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            const summary = document.getElementById('orderSummary');
+            summary.innerHTML = `
+        <div style="max-height: 300px; overflow-y: auto; margin-bottom: 1rem;">
+          ${cartItems.map(item => `
+            <div style="display: flex; gap: 0.5rem; padding: 0.75rem 0; border-bottom: 1px solid var(--gray-200);">
+              <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius-sm);" onerror="this.src='images/placeholder.jpg'">
+              <div style="flex: 1;">
+                <div style="font-size: 0.875rem; font-weight: 500;">${item.name}</div>
+                <div style="font-size: 0.75rem; color: var(--gray-600);">Qty: ${item.quantity}</div>
+                <div style="font-size: 0.875rem; font-weight: 600;">${formatCurrency(item.price)}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span>${formatCurrency(cart.getSubtotal())}</span>
+        </div>
+        
+        <div class="price-row">
+          <span style="color: var(--accent-green);">Savings</span>
+          <span style="color: var(--accent-green);">−${formatCurrency(cart.getSavings())}</span>
+        </div>
+        
+        <div class="price-row">
+          <span>Delivery</span>
+          <span>${cart.getDeliveryCharge() === 0 ? 'FREE' : formatCurrency(cart.getDeliveryCharge())}</span>
+        </div>
+        
+        <div class="price-row">
+          <span>Total</span>
+          <span>${formatCurrency(cart.getTotal())}</span>
+        </div>
+      `;
+        }
+
+        function placeOrder() {
+            // Validate form
+            const form = document.getElementById('addressForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Show success modal
+            openModal('successModal');
+
+            // Clear cart
+            setTimeout(() => {
+                cart.clear();
+            }, 2000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadOrderSummary);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our wide range of products with great deals and discounts">
+    <title>Products - CartIndia</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+        .products-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .sort-bar {
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        @media (max-width: 768px) {
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="CartIndia" style="width: 45px; height: 45px; border-radius: 50%;">
+                    <span>CartIndia</span>
+                </a>
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search for products, brands and more...">
+                    <button class="search-btn">
+                        <span>🔍</span>
+                    </button>
+                </div>
+
+                <div class="header-actions">
+                    <button class="header-btn" onclick="openModal('loginModal')">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </button>
+
+                    <a href="wishlist.html" class="header-btn">
+                        <span>❤️</span>
+                        <span>Wishlist</span>
+                    </a>
+
+                    <a href="cart.html" class="header-btn cart-badge">
+                        <span>🛒</span>
+                        <span>Cart</span>
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="category-nav">
+            <div class="container">
+                <div class="category-list">
+                    <a href="products.html?category=mobiles" class="category-item">
+                        <div class="category-icon">📱</div>
+                        <span class="category-name">Mobiles</span>
+                    </a>
+                    <a href="products.html?category=electronics" class="category-item">
+                        <div class="category-icon">💻</div>
+                        <span class="category-name">Electronics</span>
+                    </a>
+                    <a href="products.html?category=fashion" class="category-item">
+                        <div class="category-icon">👕</div>
+                        <span class="category-name">Fashion</span>
+                    </a>
+                    <a href="products.html?category=home" class="category-item">
+                        <div class="category-icon">🛋️</div>
+                        <span class="category-name">Home</span>
+                    </a>
+                    <a href="products.html?category=appliances" class="category-item">
+                        <div class="category-icon">🔌</div>
+                        <span class="category-name">Appliances</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <div class="breadcrumb-item">
+                    <a href="index.html" class="breadcrumb-link">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                </div>
+                <div class="breadcrumb-item">
+                    <span id="breadcrumbCategory">Products</span>
+                </div>
+            </div>
+
+            <div class="products-container">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <h2 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem;">Filters</h2>
+
+                    <!-- Price Filter -->
+                    <div class="filter-section">
+                        <h3 class="filter-title">Price</h3>
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <input type="number" class="price-input" id="minPrice" placeholder="Min" value="0">
+                                <input type="number" class="price-input" id="maxPrice" placeholder="Max" value="200000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="filter-section">
+                        <h3 class="filter-title">Rating</h3>
+                        <label class="filter-option">
+                            <input type="radio" name="rating" value="4" class="filter-checkbox">
+                            <span class="filter-label">4★ & above</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="rating" value="3" class="filter-checkbox">
+                            <span class="filter-label">3★ & above</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="rating" value="0" class="filter-checkbox" checked>
+                            <span class="filter-label">All Ratings</span>
+                        </label>
+                    </div>
+
+                    <!-- Assured Filter -->
+                    <div class="filter-section">
+                        <h3 class="filter-title">Assured</h3>
+                        <label class="filter-option">
+                            <input type="checkbox" id="assuredFilter" class="filter-checkbox">
+                            <span class="filter-label">✓ Assured Products Only</span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="applyFilters()">
+                        Apply Filters
+                    </button>
+                </aside>
+
+                <!-- Products Section -->
+                <div>
+                    <!-- Sort Bar -->
+                    <div class="sort-bar">
+                        <div>
+                            <span style="font-weight: 600; color: var(--gray-700);">Sort By:</span>
+                        </div>
+                        <select id="sortSelect" class="form-select" style="width: auto; padding: 0.5rem 1rem;"
+                            onchange="applyFilters()">
+                            <option value="popularity">Popularity</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Customer Rating</option>
+                            <option value="discount">Discount</option>
+                        </select>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div id="noResults"
+                        style="display: none; text-align: center; padding: 3rem; background-color: var(--white); border-radius: var(--radius-lg);">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">📦</div>
+                        <h3 style="font-size: 1.5rem; color: var(--gray-700); margin-bottom: 0.5rem;">No products found
+                        </h3>
+                        <p style="color: var(--gray-500);">Try adjusting your filters or search terms</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Careers</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Help</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Payments</a>
+                        <a href="#" class="footer-link">Shipping</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CartIndia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top">↑</button>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Login</h2>
+                <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Email or Phone</label>
+                        <input type="text" class="form-input" placeholder="Enter email or phone number">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        let currentFilters = {
+            category: null,
+            search: null,
+            minPrice: 0,
+            maxPrice: 200000,
+            minRating: 0,
+            assured: false,
+            sortBy: 'popularity'
+        };
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            currentFilters.category = urlParams.get('category');
+            currentFilters.search = urlParams.get('search');
+
+            // Update breadcrumb
+            if (currentFilters.category) {
+                document.getElementById('breadcrumbCategory').textContent =
+                    currentFilters.category.charAt(0).toUpperCase() + currentFilters.category.slice(1);
+            } else if (currentFilters.search) {
+                document.getElementById('breadcrumbCategory').textContent =
+                    `Search results for "${currentFilters.search}"`;
+            }
+
+            loadProducts();
+        });
+
+        function applyFilters() {
+            currentFilters.minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            currentFilters.maxPrice = parseInt(document.getElementById('maxPrice').value) || 200000;
+            currentFilters.minRating = parseFloat(document.querySelector('input[name="rating"]:checked')?.value) || 0;
+            currentFilters.assured = document.getElementById('assuredFilter').checked;
+            currentFilters.sortBy = document.getElementById('sortSelect').value;
+
+            loadProducts();
+        }
+
+        function loadProducts() {
+            let productsToShow = [];
+
+            // Get products based on search or category
+            if (currentFilters.search) {
+                productsToShow = searchProducts(currentFilters.search);
+            } else {
+                productsToShow = filterProducts(currentFilters);
+            }
+
+            const grid = document.getElementById('productsGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (productsToShow.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                grid.style.display = 'grid';
+                noResults.style.display = 'none';
+                grid.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+            }
+        }
+    </script>
+</body>
+
+</html>
