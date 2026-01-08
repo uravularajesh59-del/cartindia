@@ -1,8 +1,11 @@
-# CartIndia - E-Commerce Platform
+# 🛒 CartIndia - E-Commerce Platform
+
+## 🚀 [RUN THE WEB APP NOW](https://uravularajesh59-del.github.io/cartindia/) 🚀
 
 ![CartIndia Logo](images/logo.png)
 
 A modern, responsive e-commerce platform inspired by Flipkart, built with HTML, CSS, and JavaScript.
+
 
 ## 🚀 Features
 
