@@ -1,23 +1,23 @@
 // CartIndia Service Worker for PWA
 const CACHE_NAME = 'cartindia-v1.0.0';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/products.html',
-    '/product-detail.html',
-    '/cart.html',
-    '/checkout.html',
-    '/wishlist.html',
-    '/css/styles.css',
-    '/css/components.css',
-    '/css/premium.css',
-    '/js/data/products.js',
-    '/js/cart.js',
-    '/js/main.js',
-    '/js/premium.js',
-    '/images/logo.png',
-    '/images/placeholder.jpg',
-    '/images/banners/banner1.jpg'
+    './',
+    'index.html',
+    'products.html',
+    'product-detail.html',
+    'cart.html',
+    'checkout.html',
+    'wishlist.html',
+    'css/styles.css',
+    'css/components.css',
+    'css/premium.css',
+    'js/data/products.js',
+    'js/cart.js',
+    'js/main.js',
+    'js/premium.js',
+    'images/logo.png',
+    'images/placeholder.jpg',
+    'images/banners/banner1.jpg'
 ];
 
 // Install event - cache resources
