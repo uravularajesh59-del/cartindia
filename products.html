@@ -81,10 +81,12 @@
                 </div>
 
                 <div class="header-actions">
-                    <button class="header-btn" onclick="openModal('loginModal')">
-                        <span>👤</span>
-                        <span>Login</span>
-                    </button>
+                    <div class="auth-links">
+                        <button class="header-btn" onclick="openModal('loginModal')">
+                            <span>👤</span>
+                            <span>Login</span>
+                        </button>
+                    </div>
 
                     <a href="wishlist.html" class="header-btn">
                         <span>❤️</span>
@@ -278,6 +280,7 @@
     <script src="js/data/products.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
+    <script type="module" src="js/auth.js"></script>
 
     <script>
         let currentFilters = {

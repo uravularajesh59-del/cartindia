@@ -2,160 +2,163 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - CartIndia</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - CartIndia</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
 
-    <style>
-        .product-detail-container {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
+  <style>
+    .product-detail-container {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
 
-        .product-image-gallery {
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-            position: sticky;
-            top: calc(var(--header-height) + 1rem);
-        }
+    .product-image-gallery {
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--gray-200);
+      position: sticky;
+      top: calc(var(--header-height) + 1rem);
+    }
 
-        .main-image {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-        }
+    .main-image {
+      width: 100%;
+      height: 400px;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
 
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
 
-        @media (max-width: 768px) {
-            .product-detail-container {
-                grid-template-columns: 1fr;
-            }
+    @media (max-width: 768px) {
+      .product-detail-container {
+        grid-template-columns: 1fr;
+      }
 
-            .product-image-gallery {
-                position: static;
-            }
+      .product-image-gallery {
+        position: static;
+      }
 
-            .main-image {
-                height: 300px;
-            }
-        }
-    </style>
+      .main-image {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-main">
-                <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="CartIndia" style="width: 45px; height: 45px; border-radius: 50%;">
-                    <span>CartIndia</span>
-                </a>
+  <header class="header">
+    <div class="container">
+      <div class="header-main">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="CartIndia" style="width: 45px; height: 45px; border-radius: 50%;">
+          <span>CartIndia</span>
+        </a>
 
-                <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="Search for products, brands and more...">
-                    <button class="search-btn"><span>🔍</span></button>
-                </div>
-
-                <div class="header-actions">
-                    <button class="header-btn" onclick="openModal('loginModal')">
-                        <span>👤</span>
-                        <span>Login</span>
-                    </button>
-
-                    <a href="wishlist.html" class="header-btn">
-                        <span>❤️</span>
-                        <span>Wishlist</span>
-                    </a>
-
-                    <a href="cart.html" class="header-btn cart-badge">
-                        <span>🛒</span>
-                        <span>Cart</span>
-                        <span class="cart-count" style="display: none;">0</span>
-                    </a>
-                </div>
-            </div>
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="Search for products, brands and more...">
+          <button class="search-btn"><span>🔍</span></button>
         </div>
-    </header>
 
-    <main>
-        <div class="container">
-            <div class="breadcrumb">
-                <div class="breadcrumb-item">
-                    <a href="index.html" class="breadcrumb-link">Home</a>
-                    <span class="breadcrumb-separator">›</span>
-                </div>
-                <div class="breadcrumb-item">
-                    <a href="products.html" class="breadcrumb-link">Products</a>
-                    <span class="breadcrumb-separator">›</span>
-                </div>
-                <div class="breadcrumb-item">
-                    <span id="productName">Product</span>
-                </div>
-            </div>
+        <div class="header-actions">
+          <div class="auth-links">
+            <button class="header-btn" onclick="openModal('loginModal')">
+              <span>👤</span>
+              <span>Login</span>
+            </button>
+          </div>
 
-            <div id="productDetailContent">
-                <!-- Product details will be loaded here -->
-            </div>
+          <a href="wishlist.html" class="header-btn">
+            <span>❤️</span>
+            <span>Wishlist</span>
+          </a>
+
+          <a href="cart.html" class="header-btn cart-badge">
+            <span>🛒</span>
+            <span>Cart</span>
+            <span class="cart-count" style="display: none;">0</span>
+          </a>
         </div>
-    </main>
+      </div>
+    </div>
+  </header>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2026 CartIndia. All rights reserved.</p>
-            </div>
+  <main>
+    <div class="container">
+      <div class="breadcrumb">
+        <div class="breadcrumb-item">
+          <a href="index.html" class="breadcrumb-link">Home</a>
+          <span class="breadcrumb-separator">›</span>
         </div>
-    </footer>
+        <div class="breadcrumb-item">
+          <a href="products.html" class="breadcrumb-link">Products</a>
+          <span class="breadcrumb-separator">›</span>
+        </div>
+        <div class="breadcrumb-item">
+          <span id="productName">Product</span>
+        </div>
+      </div>
 
-    <button class="back-to-top">↑</button>
+      <div id="productDetailContent">
+        <!-- Product details will be loaded here -->
+      </div>
+    </div>
+  </main>
 
-    <script src="js/data/products.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 CartIndia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        function loadProductDetail() {
-            const productId = getUrlParameter('id');
+  <button class="back-to-top">↑</button>
 
-            if (!productId) {
-                window.location.href = 'products.html';
-                return;
-            }
+  <script src="js/data/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module" src="js/auth.js"></script>
 
-            const product = getProductById(parseInt(productId));
+  <script>
+    function loadProductDetail() {
+      const productId = getUrlParameter('id');
 
-            if (!product) {
-                window.location.href = 'products.html';
-                return;
-            }
+      if (!productId) {
+        window.location.href = 'products.html';
+        return;
+      }
 
-            // Update page title and breadcrumb
-            document.title = product.name + ' - CartIndia';
-            document.getElementById('productName').textContent = product.name;
+      const product = getProductById(parseInt(productId));
 
-            const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-            const isInWishlist = wishlist.hasItem(product.id);
+      if (!product) {
+        window.location.href = 'products.html';
+        return;
+      }
 
-            const container = document.getElementById('productDetailContent');
-            container.innerHTML = `
+      // Update page title and breadcrumb
+      document.title = product.name + ' - CartIndia';
+      document.getElementById('productName').textContent = product.name;
+
+      const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+      const isInWishlist = wishlist.hasItem(product.id);
+
+      const container = document.getElementById('productDetailContent');
+      container.innerHTML = `
         <div class="product-detail-container">
           <div class="product-image-gallery">
             <img src="${product.image}" alt="${product.name}" class="main-image" onerror="this.src='images/placeholder.jpg'">
@@ -235,24 +238,24 @@
           </div>
         </div>
       `;
-        }
+    }
 
-        function addToCartAndGo(productId) {
-            addToCart(productId);
-            setTimeout(() => {
-                window.location.href = 'cart.html';
-            }, 500);
-        }
+    function addToCartAndGo(productId) {
+      addToCart(productId);
+      setTimeout(() => {
+        window.location.href = 'cart.html';
+      }, 500);
+    }
 
-        function buyNow(productId) {
-            addToCart(productId);
-            setTimeout(() => {
-                window.location.href = 'checkout.html';
-            }, 500);
-        }
+    function buyNow(productId) {
+      addToCart(productId);
+      setTimeout(() => {
+        window.location.href = 'checkout.html';
+      }, 500);
+    }
 
-        document.addEventListener('DOMContentLoaded', loadProductDetail);
-    </script>
+    document.addEventListener('DOMContentLoaded', loadProductDetail);
+  </script>
 </body>
 
 </html>

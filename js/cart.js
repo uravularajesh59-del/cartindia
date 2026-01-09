@@ -11,10 +11,48 @@ class ShoppingCart {
         return saved ? JSON.parse(saved) : [];
     }
 
-    // Save cart to localStorage
-    saveCart() {
+    // Save cart to localStorage and Cloud if logged in
+    async saveCart() {
         localStorage.setItem('cart', JSON.stringify(this.items));
         this.updateCartBadge();
+
+        // Cloud sync if user is logged in
+        if (window.authManager && window.authManager.user) {
+            await this.syncWithCloud();
+        }
+    }
+
+    async syncWithCloud() {
+        if (!window.authManager || !window.authManager.user) return;
+
+        try {
+            const { db, doc, setDoc } = await import('./firebase-config.js');
+            const userRef = doc(db, 'carts', window.authManager.user.uid);
+            await setDoc(userRef, { items: this.items, updatedAt: new Date() });
+        } catch (error) {
+            console.error("Cloud sync failed:", error);
+        }
+    }
+
+    async loadFromCloud() {
+        if (!window.authManager || !window.authManager.user) return;
+
+        try {
+            const { db, doc, getDoc } = await import('./firebase-config.js');
+            const userRef = doc(db, 'carts', window.authManager.user.uid);
+            const docSnap = await getDoc(userRef);
+
+            if (docSnap.exists()) {
+                const cloudItems = docSnap.data().items;
+                // Merge or replace logic (replacing for simplicity here)
+                this.items = cloudItems;
+                localStorage.setItem('cart', JSON.stringify(this.items));
+                this.updateCartBadge();
+                if (typeof loadCartItems === 'function') loadCartItems(); // Refresh cart page if open
+            }
+        } catch (error) {
+            console.error("Failed to load from cloud:", error);
+        }
     }
 
     // Add item to cart
