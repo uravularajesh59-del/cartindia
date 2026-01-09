@@ -24,7 +24,7 @@ const products = [
     discount: 19,
     rating: 4.2,
     reviews: 1523,
-    image: "images/products/phone2.jpg",
+    image: "images/placeholder.jpg",
     features: "4GB RAM, 64GB Storage, 6.5\" Display",
     inStock: true,
     assured: true
@@ -38,7 +38,7 @@ const products = [
     discount: 21,
     rating: 4.7,
     reviews: 3921,
-    image: "images/products/phone3.jpg",
+    image: "images/placeholder.jpg",
     features: "12GB RAM, 256GB Storage, 6.8\" AMOLED",
     inStock: true,
     assured: true
@@ -52,7 +52,7 @@ const products = [
     discount: 22,
     rating: 4.4,
     reviews: 892,
-    image: "images/products/tablet1.jpg",
+    image: "images/placeholder.jpg",
     features: "11\" Display, 6GB RAM, 128GB Storage",
     inStock: true,
     assured: false
@@ -82,7 +82,7 @@ const products = [
     discount: 15,
     rating: 4.3,
     reviews: 876,
-    image: "images/products/laptop2.jpg",
+    image: "images/placeholder.jpg",
     features: "Intel i5, 8GB RAM, 512GB SSD, 14\" FHD",
     inStock: true,
     assured: true
@@ -96,7 +96,7 @@ const products = [
     discount: 17,
     rating: 4.8,
     reviews: 543,
-    image: "images/products/laptop3.jpg",
+    image: "images/placeholder.jpg",
     features: "Intel i9, 32GB RAM, RTX 4070, 1TB SSD",
     inStock: true,
     assured: true
@@ -126,7 +126,7 @@ const products = [
     discount: 19,
     rating: 4.7,
     reviews: 876,
-    image: "images/products/tv2.jpg",
+    image: "images/placeholder.jpg",
     features: "65\" OLED, 4K, Dolby Vision, 120Hz",
     inStock: true,
     assured: true
@@ -156,7 +156,7 @@ const products = [
     discount: 48,
     rating: 4.3,
     reviews: 2876,
-    image: "images/products/dress1.jpg",
+    image: "images/placeholder.jpg",
     features: "Designer Wear, Premium Fabric, Party Wear",
     inStock: true,
     assured: false
@@ -170,7 +170,7 @@ const products = [
     discount: 50,
     rating: 4.2,
     reviews: 4521,
-    image: "images/products/jeans1.jpg",
+    image: "images/placeholder.jpg",
     features: "Slim Fit, Stretchable, Dark Blue",
     inStock: true,
     assured: false
@@ -186,7 +186,7 @@ const products = [
     discount: 29,
     rating: 4.4,
     reviews: 567,
-    image: "images/products/sofa1.jpg",
+    image: "images/placeholder.jpg",
     features: "Fabric Upholstery, Wooden Frame, Grey Color",
     inStock: true,
     assured: true
@@ -200,7 +200,7 @@ const products = [
     discount: 30,
     rating: 4.5,
     reviews: 892,
-    image: "images/products/bed1.jpg",
+    image: "images/placeholder.jpg",
     features: "Engineered Wood, Hydraulic Storage, Brown",
     inStock: true,
     assured: true
@@ -216,7 +216,7 @@ const products = [
     discount: 21,
     rating: 4.3,
     reviews: 1234,
-    image: "images/products/fridge1.jpg",
+    image: "images/placeholder.jpg",
     features: "260L, 3 Star, Frost Free, Inverter",
     inStock: true,
     assured: true
@@ -230,7 +230,7 @@ const products = [
     discount: 24,
     rating: 4.4,
     reviews: 987,
-    image: "images/products/washing1.jpg",
+    image: "images/placeholder.jpg",
     features: "7kg, Front Load, 1200 RPM, Inverter",
     inStock: true,
     assured: true
@@ -258,7 +258,7 @@ const products = [
     discount: 24,
     rating: 4.2,
     reviews: 743,
-    image: "images/products/microwave1.jpg",
+    image: "images/placeholder.jpg",
     features: "28L, Convection, Auto Cook Menu",
     inStock: true,
     assured: false
@@ -298,7 +298,7 @@ function getProductById(id) {
 // Search products
 function searchProducts(query) {
   const lowerQuery = query.toLowerCase();
-  return products.filter(product => 
+  return products.filter(product =>
     product.name.toLowerCase().includes(lowerQuery) ||
     product.features.toLowerCase().includes(lowerQuery) ||
     product.category.toLowerCase().includes(lowerQuery)
@@ -308,12 +308,12 @@ function searchProducts(query) {
 // Filter products
 function filterProducts(filters) {
   let filtered = [...products];
-  
+
   // Filter by category
   if (filters.category && filters.category !== 'all') {
     filtered = filtered.filter(p => p.category === filters.category);
   }
-  
+
   // Filter by price range
   if (filters.minPrice) {
     filtered = filtered.filter(p => p.price >= filters.minPrice);
@@ -321,17 +321,17 @@ function filterProducts(filters) {
   if (filters.maxPrice) {
     filtered = filtered.filter(p => p.price <= filters.maxPrice);
   }
-  
+
   // Filter by rating
   if (filters.minRating) {
     filtered = filtered.filter(p => p.rating >= filters.minRating);
   }
-  
+
   // Filter by assured
   if (filters.assured) {
     filtered = filtered.filter(p => p.assured);
   }
-  
+
   // Sort products
   if (filters.sortBy) {
     switch (filters.sortBy) {
@@ -352,7 +352,7 @@ function filterProducts(filters) {
         filtered.sort((a, b) => b.reviews - a.reviews);
     }
   }
-  
+
   return filtered;
 }
 

@@ -1,5 +1,5 @@
 // CartIndia Service Worker for PWA
-const CACHE_NAME = 'cartindia-v1.0.0';
+const CACHE_NAME = 'cartindia-v1.1.0';
 const urlsToCache = [
     './',
     'index.html',
@@ -8,6 +8,8 @@ const urlsToCache = [
     'cart.html',
     'checkout.html',
     'wishlist.html',
+    'login.html',
+    'signup.html',
     'css/styles.css',
     'css/components.css',
     'css/premium.css',
@@ -15,6 +17,8 @@ const urlsToCache = [
     'js/cart.js',
     'js/main.js',
     'js/premium.js',
+    'js/auth.js',
+    'js/firebase-config.js',
     'images/logo.png',
     'images/placeholder.jpg',
     'images/banners/banner1.jpg'
